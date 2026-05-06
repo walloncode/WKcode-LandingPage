@@ -34,12 +34,22 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
+
+        {/* LOGO AJUSTADO */}
         <a href="#" className="flex items-center">
           <div className="rounded-xl overflow-hidden ring-1 ring-white/10">
-            <Image src="/images/logo.png" alt="WKCODE" width={130} height={44} priority className="h-9 w-auto" />
+            <Image
+              src="/images/logo.png"
+              alt="WKCODE"
+              width={160}
+              height={40}
+              priority
+              className="h-10 w-auto"
+            />
           </div>
         </a>
 
+        {/* MENU DESKTOP */}
         <ul className="hidden lg:flex items-center gap-7">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
@@ -54,6 +64,7 @@ export default function Navbar() {
           ))}
         </ul>
 
+        {/* CTA + MENU MOBILE */}
         <div className="flex items-center gap-3">
           <a
             href={WA_LINK}
@@ -75,6 +86,7 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* MENU MOBILE */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ${
           open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
@@ -92,6 +104,7 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+
           <li className="pt-2">
             <a
               href={WA_LINK}
