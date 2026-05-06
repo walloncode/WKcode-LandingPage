@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: rgba(0, 18, 48, 0.20);
+  --foreground: #ffffff;
+  --muted: rgba(0, 8, 28, 0.55);
+  --muted-foreground: #8ccfe8;
+  --border: rgba(255, 255, 255, 0.14);
+  --card: rgba(0, 28, 68, 0.92);
+  --radius: 0.75rem;
+  --accent: #00ffea;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fixed gradient — permanent canvas behind everything */
+html::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(160deg, #006494 0%, #00274A 100%);
+}
+
+body {
+  background: transparent;
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #00274A; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #00BFFF; }
+
+::selection { background: rgba(0, 191, 255, 0.35); }
+
+/* Dot grid */
+.grid-dots {
+  background-image: radial-gradient(rgba(0, 191, 255, 0.16) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Glass card — use background-color (not shorthand) so
+       Tailwind background-image utilities still work on top ─── */
+.glass {
+  background-color: rgba(0, 28, 70, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius);
+}
+
+/* ─── Gradient CTA button ─── */
+.btn-gradient {
+  background: linear-gradient(90deg, #00BFFF 0%, #0048E4 100%);
+  color: #ffffff;
+  font-weight: 600;
+}
+.btn-gradient:hover {
+  box-shadow: 0 0 28px rgba(0, 191, 255, 0.45);
+  transform: scale(1.04);
+}
+.btn-gradient:active {
+  transform: scale(0.97);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeUp {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

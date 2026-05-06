@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\\\Users\\\\User\\\\Documents\\\\WKCODE - SITE\" /b /s)",
+      "Bash(dir \"C:\\\\Users\\\\User\\\\Documents\\\\WKCODE\" /b /s)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\User\\\\Documents\\\\WKCODE\\\\src\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object -ExpandProperty FullName | Sort-Object)"
+    ]
+  }
+}
