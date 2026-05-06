@@ -70,8 +70,14 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="rounded-xl overflow-hidden ring-1 ring-white/10 inline-block mb-5">
-              <Image src="/images/logo.png" alt="WKCODE" width={120} height={40} className="h-9 w-auto" />
+            <div className="inline-block mb-5 -ml-4">
+              <Image
+                src="/images/logo.png"
+                alt="WKCODE"
+                width={400}
+                height={400}
+                className="h-40 md:h-48 w-40 md:w-48 object-contain"
+              />
             </div>
             <p className="text-sm text-white/70 leading-relaxed max-w-xs mb-6">
               Transformamos ideias em soluções digitais com prazo, clareza e foco no resultado do cliente.

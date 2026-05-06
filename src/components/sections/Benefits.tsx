@@ -1,5 +1,6 @@
 'use client'
 import { Clock, ShieldCheck, TrendingUp, Smartphone, Search, Headphones } from 'lucide-react'
+import TiltCard from '@/components/TiltCard'
 
 const BENEFITS = [
   {
@@ -64,28 +65,30 @@ export default function Benefits() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
           {BENEFITS.map((b) => (
-            <div
-              key={b.title}
-              className="flex gap-4 p-6 rounded-2xl bg-[#0A0F1C] border border-white/10 hover:-translate-y-1 hover:border-[#00BFFF]/50 hover:shadow-[0_8px_30px_rgba(0,191,255,0.12)] transition-all duration-300 group"
-            >
+            <TiltCard key={b.title} intensity={8} className="h-full">
+              <div className="relative h-full flex gap-4 p-6 rounded-2xl bg-[#0A0F1C] border border-white/10 hover:border-[#00BFFF]/50 hover:shadow-[0_20px_50px_rgba(0,191,255,0.18)] transition-colors duration-300 group overflow-hidden">
 
-              {/* ICON */}
-              <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-[#00BFFF]/20 to-[#0048E4]/10 border border-[#00BFFF]/20 flex items-center justify-center text-[#00BFFF] group-hover:scale-110 transition">
-                <b.Icon className="w-5 h-5" strokeWidth={1.6} />
+                {/* ICON */}
+                <div
+                  className="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-[#00BFFF]/20 to-[#0048E4]/10 border border-[#00BFFF]/20 flex items-center justify-center text-[#00BFFF] group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,191,255,0.4)] transition-all duration-300"
+                  style={{ transform: 'translateZ(40px)' }}
+                >
+                  <b.Icon className="w-5 h-5" strokeWidth={1.6} />
+                </div>
+
+                {/* TEXT */}
+                <div style={{ transform: 'translateZ(25px)' }}>
+                  <h3 className="text-sm font-semibold text-white mb-1.5">
+                    {b.title}
+                  </h3>
+
+                  <p className="text-sm text-white/80 leading-relaxed">
+                    {b.description}
+                  </p>
+                </div>
+
               </div>
-
-              {/* TEXT */}
-              <div>
-                <h3 className="text-sm font-semibold text-white mb-1.5">
-                  {b.title}
-                </h3>
-
-                <p className="text-sm text-white/80 leading-relaxed">
-                  {b.description}
-                </p>
-              </div>
-
-            </div>
+            </TiltCard>
           ))}
 
         </div>

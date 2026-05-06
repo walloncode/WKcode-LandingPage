@@ -3,7 +3,11 @@
     "allow": [
       "Bash(dir \"C:\\\\Users\\\\User\\\\Documents\\\\WKCODE - SITE\" /b /s)",
       "Bash(dir \"C:\\\\Users\\\\User\\\\Documents\\\\WKCODE\" /b /s)",
-      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\User\\\\Documents\\\\WKCODE\\\\src\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object -ExpandProperty FullName | Sort-Object)"
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\User\\\\Documents\\\\WKCODE\\\\src\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object -ExpandProperty FullName | Sort-Object)",
+      "Bash(npm install *)",
+      "Bash(identify /home/slowinseven/Downloads/wkcode/WKcode-LandingPage/public/images/logo.png)",
+      "Bash(python3 -c \"from PIL import Image; img = Image.open\\('/home/slowinseven/Downloads/wkcode/WKcode-LandingPage/public/images/logo.png'\\); print\\(img.size\\)\")",
+      "Bash(npx tsc *)"
     ]
   }
 }

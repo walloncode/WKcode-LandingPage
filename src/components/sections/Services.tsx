@@ -1,7 +1,7 @@
 'use client'
-import { useRef, useCallback } from 'react'
 import { Building2, Zap, ShoppingCart, LayoutGrid, Settings2 } from 'lucide-react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import TiltCard from '@/components/TiltCard'
 
 const SERVICES = [
   {
@@ -36,41 +36,6 @@ const SERVICES = [
   },
 ]
 
-function TiltCard({ children, className }: { children: React.ReactNode; className?: string }) {
-  const cardRef = useRef<HTMLDivElement>(null)
-
-  const handleMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const el = cardRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    const cx = rect.width / 2
-    const cy = rect.height / 2
-    const rotX = ((y - cy) / cy) * -6
-    const rotY = ((x - cx) / cx) * 6
-    el.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`
-  }, [])
-
-  const handleLeave = useCallback(() => {
-    if (cardRef.current) {
-      cardRef.current.style.transform = ''
-    }
-  }, [])
-
-  return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      className={className}
-      style={{ transition: 'transform 0.15s ease, box-shadow 0.3s ease' }}
-    >
-      {children}
-    </div>
-  )
-}
-
 export default function Services() {
   const headingRef = useScrollReveal<HTMLDivElement>({ y: 30, duration: 0.7 })
   const gridRef = useScrollReveal<HTMLDivElement>({
@@ -98,23 +63,31 @@ export default function Services() {
         <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {SERVICES.map((s, i) => (
             <div key={s.title} className="service-card">
-              <TiltCard className="relative h-full p-6 rounded-2xl glass hover:border-[#00BFFF]/50 hover:shadow-[0_8px_32px_rgba(0,191,255,0.15)] cursor-default group overflow-hidden">
-                {/* Hover glow */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#00BFFF]/8 to-[#0048E4]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              <TiltCard intensity={12} className="h-full">
+                <div className="relative h-full p-6 rounded-2xl glass hover:border-[#00BFFF]/50 hover:shadow-[0_20px_60px_rgba(0,191,255,0.25)] cursor-default group overflow-hidden">
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#00BFFF]/10 to-[#0048E4]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                {/* Number bg */}
-                <span className="absolute top-4 right-5 text-7xl font-bold text-white/[0.04] leading-none select-none pointer-events-none">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
+                  {/* Number bg */}
+                  <span
+                    className="absolute top-4 right-5 text-7xl font-bold text-white/[0.04] leading-none select-none pointer-events-none"
+                    style={{ transform: 'translateZ(40px)' }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
 
-                <div className="relative">
-                  {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00BFFF]/20 to-[#0048E4]/15 border border-[#00BFFF]/25 flex items-center justify-center text-[#00BFFF] mb-5 group-hover:scale-110 group-hover:shadow-[0_0_16px_rgba(0,191,255,0.3)] transition-all duration-300">
-                    <s.Icon className="w-5 h-5" strokeWidth={1.6} />
+                  <div className="relative" style={{ transform: 'translateZ(30px)' }}>
+                    {/* Icon */}
+                    <div
+                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00BFFF]/20 to-[#0048E4]/15 border border-[#00BFFF]/25 flex items-center justify-center text-[#00BFFF] mb-5 group-hover:scale-110 group-hover:shadow-[0_0_24px_rgba(0,191,255,0.5)] transition-all duration-300"
+                      style={{ transform: 'translateZ(50px)' }}
+                    >
+                      <s.Icon className="w-5 h-5" strokeWidth={1.6} />
+                    </div>
+
+                    <h3 className="text-base font-semibold text-white mb-2.5">{s.title}</h3>
+                    <p className="text-sm text-white/78 leading-relaxed">{s.description}</p>
                   </div>
-
-                  <h3 className="text-base font-semibold text-white mb-2.5">{s.title}</h3>
-                  <p className="text-sm text-white/78 leading-relaxed">{s.description}</p>
                 </div>
               </TiltCard>
             </div>

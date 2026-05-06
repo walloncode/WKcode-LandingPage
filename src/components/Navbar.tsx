@@ -33,20 +33,18 @@ export default function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 h-[96px] flex items-center justify-between">
 
         {/* LOGO AJUSTADO */}
-        <a href="#" className="flex items-center">
-          <div className="rounded-xl overflow-hidden ring-1 ring-white/10">
-            <Image
-              src="/images/logo.png"
-              alt="WKCODE"
-              className="h-14 w-auto"
-              width={220}
-              height={55}
-              priority
-            />
-          </div>
+        <a href="#" className="flex items-center -my-8">
+          <Image
+            src="/images/logo.png"
+            alt="WKCODE"
+            className="h-40 md:h-52 w-40 md:w-52 object-contain"
+            width={400}
+            height={400}
+            priority
+          />
         </a>
 
         {/* MENU DESKTOP */}

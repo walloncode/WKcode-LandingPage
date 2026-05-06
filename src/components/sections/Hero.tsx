@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { ArrowRight, Radio } from 'lucide-react'
 
@@ -13,6 +13,10 @@ const STATS = [
 ]
 
 export default function Hero() {
+  const logoWrapRef = useRef<HTMLDivElement>(null)
+  const logoRef = useRef<HTMLDivElement>(null)
+  const [scrollY, setScrollY] = useState(0)
+
   useEffect(() => {
     const init = async () => {
       const { gsap } = await import('gsap')
@@ -23,10 +27,57 @@ export default function Hero() {
         .from('.hero-sub', { y: 24, opacity: 0, duration: 0.6 }, '-=0.4')
         .from('.hero-actions', { y: 20, opacity: 0, duration: 0.5 }, '-=0.4')
         .from('.hero-stat', { y: 16, opacity: 0, duration: 0.4, stagger: 0.1 }, '-=0.3')
-        .from('.hero-img-wrap', { x: 60, opacity: 0, duration: 0.9 }, '-=0.9')
+        .from('.hero-img-wrap', { x: 60, opacity: 0, scale: 0.85, duration: 1.1 }, '-=0.9')
+
+      gsap.to('.hero-logo-float', {
+        y: -18,
+        duration: 3,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+      })
     }
     init()
   }, [])
+
+  useEffect(() => {
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = logoWrapRef.current
+    const inner = logoRef.current
+    if (!el || !inner) return
+    const rect = el.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    const cx = rect.width / 2
+    const cy = rect.height / 2
+    const rotX = ((y - cy) / cy) * -12
+    const rotY = ((x - cx) / cx) * 12
+    inner.style.transform = `perspective(1100px) rotateX(${rotX}deg) rotateY(${rotY}deg)`
+  }
+
+  const handleMouseLeave = () => {
+    if (logoRef.current) {
+      logoRef.current.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg)'
+    }
+  }
+
+  const parallaxY = scrollY * 0.25
+  const parallaxRotate = scrollY * 0.04
+  const parallaxScale = Math.max(0.85, 1 - scrollY * 0.0006)
 
   return (
    <section className="relative z-10 min-h-screen flex items-center overflow-hidden">
@@ -109,26 +160,87 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT */}
-          <div className="hero-img-wrap relative">
-            <div className="absolute -inset-6 bg-[#00BFFF]/8 rounded-3xl blur-3xl" />
+          {/* RIGHT — Logo 3D com parallax */}
+          <div
+            ref={logoWrapRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="hero-img-wrap relative flex items-center justify-center min-h-[480px] lg:min-h-[560px]"
+            style={{ perspective: '1100px' }}
+          >
+            {/* Glow rings */}
+            <div
+              className="absolute inset-0 rounded-full bg-[#00BFFF]/15 blur-3xl"
+              style={{
+                transform: `translateY(${parallaxY * 0.5}px) scale(${1 + scrollY * 0.0008})`,
+              }}
+            />
+            <div
+              className="absolute inset-10 rounded-full bg-[#0048E4]/20 blur-2xl"
+              style={{ transform: `translateY(${parallaxY * 0.3}px)` }}
+            />
 
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl">
-              <Image
-                src="/images/hero.jpg"
-                alt="WKCODE"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#00274A]/80 via-black/20 to-transparent" />
+            {/* Anel orbital */}
+            <div
+              className="absolute w-[420px] h-[420px] lg:w-[520px] lg:h-[520px] rounded-full border border-[#00BFFF]/20 pointer-events-none"
+              style={{
+                transform: `rotate(${parallaxRotate * 2}deg) scale(${parallaxScale})`,
+              }}
+            />
+            <div
+              className="absolute w-[340px] h-[340px] lg:w-[440px] lg:h-[440px] rounded-full border border-dashed border-[#00BFFF]/15 pointer-events-none"
+              style={{
+                transform: `rotate(${-parallaxRotate * 3}deg)`,
+              }}
+            />
 
-              <div className="absolute bottom-5 left-5 right-5">
-                <div className="rounded-xl p-4 flex items-center gap-3 bg-[rgba(0,28,70,0.9)] border border-white/10 backdrop-blur">
-                  <div className="w-2 h-2 rounded-full bg-[#00BFFF] animate-pulse" />
-                  <div>
-                    <p className="text-white text-sm font-medium">Entrega garantida</p>
-                    <p className="text-[#00BFFF] text-xs">Prazo definido desde o início</p>
-                  </div>
+            {/* Logo principal com parallax + tilt + float */}
+            <div
+              className="hero-logo-float relative z-10"
+              style={{
+                transform: `translateY(${-parallaxY}px) scale(${parallaxScale})`,
+                willChange: 'transform',
+              }}
+            >
+              <div
+                ref={logoRef}
+                className="relative transition-transform duration-200 ease-out"
+                style={{
+                  transformStyle: 'preserve-3d',
+                  filter: 'drop-shadow(0 30px 60px rgba(0, 191, 255, 0.35)) drop-shadow(0 0 30px rgba(0, 191, 255, 0.25))',
+                }}
+              >
+                <Image
+                  src="/images/logo.png"
+                  alt="WKCODE"
+                  width={560}
+                  height={560}
+                  priority
+                  className="w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] object-contain select-none pointer-events-none"
+                  draggable={false}
+                />
+                {/* Brilho percorrendo */}
+                <div
+                  className="absolute inset-0 rounded-full opacity-60 mix-blend-overlay pointer-events-none"
+                  style={{
+                    background:
+                      'conic-gradient(from 0deg, transparent 0deg, rgba(0,191,255,0.4) 60deg, transparent 120deg, transparent 360deg)',
+                    transform: `rotate(${scrollY * 0.5}deg)`,
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Badge "Entrega garantida" */}
+            <div
+              className="absolute bottom-4 left-4 right-4 sm:left-8 sm:right-8 z-20"
+              style={{ transform: `translateY(${parallaxY * 0.6}px)` }}
+            >
+              <div className="rounded-xl p-4 flex items-center gap-3 bg-[rgba(0,28,70,0.9)] border border-white/10 backdrop-blur shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+                <div className="w-2 h-2 rounded-full bg-[#00BFFF] animate-pulse" />
+                <div>
+                  <p className="text-white text-sm font-medium">Entrega garantida</p>
+                  <p className="text-[#00BFFF] text-xs">Prazo definido desde o início</p>
                 </div>
               </div>
             </div>
