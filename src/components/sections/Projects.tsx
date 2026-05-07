@@ -24,7 +24,7 @@ const REAL_PROJECTS = [
     accent: '#2F0484',
   },
   {
-    name: 'Wallon Code',
+    name: 'WallonCode',
     url: 'https://walloncode.com.br',
     domain: 'walloncode.com.br',
     category: 'Portfólio Dev',

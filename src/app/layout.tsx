@@ -62,7 +62,6 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#000000" />
-        <link rel="icon" href="/favicon.ico" />
       </head>
       <body suppressHydrationWarning>
         {/* Prevent dark mode flash */}
