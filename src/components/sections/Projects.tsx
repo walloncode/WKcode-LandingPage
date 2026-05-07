@@ -37,8 +37,12 @@ const REAL_PROJECTS = [
 
 export default function Projects() {
   return (
-    <section id="projetos" className="py-24 lg:py-32 bg-[#050B18]">
-      <div className="max-w-7xl mx-auto px-6">
+    <section
+      id="projetos"
+      className="relative py-24 lg:py-32 bg-[#050B18] bg-[url('/images/image%201.png')] bg-cover bg-center bg-no-repeat"
+    >
+      <div className="absolute inset-0 bg-[#050B18]/80" />
+      <div className="relative max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
         <div className="max-w-2xl mb-14">
