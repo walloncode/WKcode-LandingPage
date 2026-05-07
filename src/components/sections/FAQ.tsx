@@ -88,7 +88,7 @@ export default function FAQ() {
   })
 
   return (
-    <section id="faq" className="py-24 lg:py-32 bg-[var(--muted)]">
+    <section id="faq" className="py-24 lg:py-32 bg-section-a">
       <div className="max-w-3xl mx-auto px-6">
         <div ref={headingRef} className="text-center mb-12">
           <span className="text-xs font-semibold tracking-widest uppercase text-[#00BFFF] mb-4 block">

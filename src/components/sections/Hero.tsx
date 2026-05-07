@@ -7,10 +7,46 @@ const WA_LINK =
   'https://wa.me/556884240245?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20meu%20projeto%20com%20a%20WKCODE.'
 
 const STATS = [
-  { value: '+50', label: 'Projetos entregues' },
-  { value: '15d', label: 'Prazo máximo' },
-  { value: '2sem', label: 'Suporte gratuito' },
+  { prefix: '+', target: 4, suffix: '', label: 'Projetos entregues' },
+  { prefix: '', target: 15, suffix: 'd', label: 'Prazo máximo' },
+  { prefix: '', target: 2, suffix: 'sem', label: 'Suporte gratuito' },
 ]
+
+function CountUp({
+  target,
+  duration = 1600,
+  delay = 0,
+}: {
+  target: number
+  duration?: number
+  delay?: number
+}) {
+  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    let raf = 0
+    let startTs = 0
+    const tick = (now: number) => {
+      if (!startTs) startTs = now
+      const elapsed = now - startTs
+      const t = Math.min(1, elapsed / duration)
+      const eased = 1 - Math.pow(1 - t, 3)
+      setValue(Math.round(target * eased))
+      if (t < 1) raf = requestAnimationFrame(tick)
+    }
+
+    const timeout = window.setTimeout(() => {
+      raf = requestAnimationFrame(tick)
+    }, delay)
+
+    return () => {
+      window.clearTimeout(timeout)
+      cancelAnimationFrame(raf)
+    }
+  }, [target, duration, delay])
+
+  return <>{value}</>
+}
 
 export default function Hero() {
   const logoWrapRef = useRef<HTMLDivElement>(null)
@@ -151,9 +187,13 @@ export default function Hero() {
 
             {/* STATS */}
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
-              {STATS.map((s) => (
+              {STATS.map((s, i) => (
                 <div key={s.label} className="hero-stat">
-                  <p className="text-2xl font-semibold text-white">{s.value}</p>
+                  <p className="text-2xl font-semibold text-white tabular-nums">
+                    {s.prefix}
+                    <CountUp target={s.target} delay={1400 + i * 150} />
+                    {s.suffix}
+                  </p>
                   <p className="text-xs text-white/50 mt-1">{s.label}</p>
                 </div>
               ))}
@@ -239,7 +279,7 @@ export default function Hero() {
               <div className="rounded-xl p-4 flex items-center gap-3 bg-[rgba(0,28,70,0.9)] border border-white/10 backdrop-blur shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
                 <div className="w-2 h-2 rounded-full bg-[#00BFFF] animate-pulse" />
                 <div>
-                  <p className="text-white text-sm font-medium">Entrega garantida</p>
+                  <p className="text-white text-sm font-medium">Te colocamos no radar dos clientes</p>
                   <p className="text-[#00BFFF] text-xs">Prazo definido desde o início</p>
                 </div>
               </div>

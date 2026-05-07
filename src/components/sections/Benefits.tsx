@@ -43,7 +43,7 @@ const BENEFITS = [
 
 export default function Benefits() {
   return (
-    <section className="py-24 lg:py-32 bg-[#050B18]">
+    <section className="py-24 lg:py-32 bg-section-a">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
@@ -66,7 +66,7 @@ export default function Benefits() {
 
           {BENEFITS.map((b) => (
             <TiltCard key={b.title} intensity={8} className="h-full">
-              <div className="relative h-full flex gap-4 p-6 rounded-2xl bg-[#0A0F1C] border border-white/10 hover:border-[#00BFFF]/50 hover:shadow-[0_20px_50px_rgba(0,191,255,0.18)] transition-colors duration-300 group overflow-hidden">
+              <div className="relative h-full flex gap-4 p-6 rounded-2xl bg-[rgba(0,28,70,0.9)] border border-white/10 hover:border-[#00BFFF]/50 hover:shadow-[0_20px_50px_rgba(0,191,255,0.18)] transition-colors duration-300 group overflow-hidden">
 
                 {/* ICON */}
                 <div

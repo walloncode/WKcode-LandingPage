@@ -37,11 +37,16 @@ html::before {
 body {
   background: transparent;
   color: var(--foreground);
-  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sora), var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.01em;
 }
 
 /* Custom scrollbar */
@@ -56,6 +61,14 @@ body {
 .grid-dots {
   background-image: radial-gradient(rgba(0, 191, 255, 0.16) 1px, transparent 1px);
   background-size: 28px 28px;
+}
+
+/* ─── Section gradients (brand identity, alternating direction) ─── */
+.bg-section-a {
+  background: linear-gradient(180deg, #00274A 0%, #006494 100%);
+}
+.bg-section-b {
+  background: linear-gradient(180deg, #006494 0%, #00274A 100%);
 }
 
 /* ─── Glass card — use background-color (not shorthand) so

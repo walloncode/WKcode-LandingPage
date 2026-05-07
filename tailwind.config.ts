@@ -42,6 +42,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          'var(--font-poppins)',
           'ui-sans-serif',
           'system-ui',
           '-apple-system',
@@ -50,6 +51,13 @@ const config: Config = {
           'Helvetica Neue',
           'Arial',
           'Noto Sans',
+          'sans-serif',
+        ],
+        display: [
+          'var(--font-sora)',
+          'var(--font-poppins)',
+          'ui-sans-serif',
+          'system-ui',
           'sans-serif',
         ],
       },

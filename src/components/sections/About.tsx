@@ -15,7 +15,7 @@ export default function About() {
   const rightRef = useScrollReveal<HTMLDivElement>({ x: 44, duration: 0.9, delay: 0.15 })
 
   return (
-    <section id="sobre" className="py-24 lg:py-32 bg-[var(--muted)]">
+    <section id="sobre" className="py-24 lg:py-32 bg-section-a">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 

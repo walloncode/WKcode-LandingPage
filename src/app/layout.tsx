@@ -1,5 +1,20 @@
 import type { Metadata } from 'next'
+import { Poppins, Sora } from 'next/font/google'
 import './globals.css'
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-poppins',
+  display: 'swap',
+})
+
+const sora = Sora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sora',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wkcode.com.br'),
@@ -59,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="pt-BR" className={`${poppins.variable} ${sora.variable}`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#000000" />
       </head>

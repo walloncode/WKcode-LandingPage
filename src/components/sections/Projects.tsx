@@ -39,9 +39,13 @@ export default function Projects() {
   return (
     <section
       id="projetos"
-      className="relative py-24 lg:py-32 bg-[#050B18] bg-[url('/images/image%201.png')] bg-cover bg-center bg-no-repeat"
+      className="relative py-24 lg:py-32 bg-section-b overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[#050B18]/80" />
+      <div
+        className="absolute inset-0 bg-[url('/images/image%201.png')] bg-cover bg-center bg-no-repeat blur-sm scale-105 opacity-60"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#006494]/55 to-[#00274A]/55" />
       <div className="relative max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
@@ -68,7 +72,7 @@ export default function Projects() {
               href={p.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group rounded-2xl overflow-hidden border border-white/10 bg-[#0A0F1C] hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(0,0,0,0.6)] transition-all duration-500"
+              className="group rounded-2xl overflow-hidden border border-white/10 bg-[rgba(0,28,70,0.9)] hover:-translate-y-2 hover:shadow-[0_12px_40px_#006494] transition-all duration-500"
             >
 
               {/* IMAGE */}
@@ -133,7 +137,7 @@ export default function Projects() {
         </div>
 
         {/* BANNER FINAL */}
-        <div className="mt-16 rounded-2xl p-10 bg-[#0A0F1C] border border-white/10 text-center">
+        <div className="mt-16 rounded-2xl p-10 bg-[rgba(0,28,70,0.9)] border border-white/10 text-center">
           <h3 className="text-white text-2xl font-semibold mb-3">
             Cada projeto é único
           </h3>
@@ -142,7 +146,7 @@ export default function Projects() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-3">
-            {['+50 projetos', '100% sob medida', 'Sites publicados'].map((tag) => (
+            {['+4 projetos', '100% sob medida', 'Sites publicados'].map((tag) => (
               <span
                 key={tag}
                 className="px-3 py-1 rounded-full text-white/90 text-xs border border-white/15"

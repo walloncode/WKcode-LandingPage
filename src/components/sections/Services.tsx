@@ -46,7 +46,7 @@ export default function Services() {
   })
 
   return (
-    <section id="servicos" className="py-24 lg:py-32">
+    <section id="servicos" className="py-24 lg:py-32 bg-section-b">
       <div className="max-w-7xl mx-auto px-6">
         <div ref={headingRef} className="max-w-2xl mb-14">
           <span className="text-xs font-semibold tracking-widest uppercase text-[#00BFFF] mb-4 block">

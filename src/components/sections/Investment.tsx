@@ -26,7 +26,7 @@ const RULES = [
 
 export default function Investment() {
   return (
-    <section id="investimento" className="py-24 lg:py-32 bg-[#050B18]">
+    <section id="investimento" className="py-24 lg:py-32 bg-section-b">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -51,7 +51,7 @@ export default function Investment() {
             <div className="space-y-4">
 
               {/* 1 */}
-              <div className="p-6 rounded-2xl bg-[#0A0F1C] border border-white/10 hover:border-[#00BFFF]/40 hover:-translate-y-1 transition">
+              <div className="p-6 rounded-2xl bg-[rgba(0,28,70,0.9)] border border-white/10 hover:border-[#00BFFF]/40 hover:-translate-y-1 transition">
                 <div className="flex justify-between items-center">
                   <div className="flex gap-4 items-center">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#00BFFF] to-[#0048E4] flex items-center justify-center text-white font-bold">
@@ -75,7 +75,7 @@ export default function Investment() {
               </div>
 
               {/* 2 */}
-              <div className="p-6 rounded-2xl bg-[#0A0F1C] border border-white/10 hover:border-[#00BFFF]/40 hover:-translate-y-1 transition">
+              <div className="p-6 rounded-2xl bg-[rgba(0,28,70,0.9)] border border-white/10 hover:border-[#00BFFF]/40 hover:-translate-y-1 transition">
                 <div className="flex justify-between items-center">
                   <div className="flex gap-4 items-center">
                     <div className="w-12 h-12 rounded-full border border-[#00BFFF] flex items-center justify-center text-[#00BFFF] font-bold">
@@ -107,7 +107,7 @@ export default function Investment() {
             {RULES.map((r) => (
               <div
                 key={r.title}
-                className="flex gap-4 p-5 rounded-xl bg-[#0A0F1C] border border-white/10 hover:border-[#00BFFF]/40 hover:-translate-y-1 transition group"
+                className="flex gap-4 p-5 rounded-xl bg-[rgba(0,28,70,0.9)] border border-white/10 hover:border-[#00BFFF]/40 hover:-translate-y-1 transition group"
               >
                 <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#00BFFF]/10 text-[#00BFFF] group-hover:scale-110 transition">
                   <r.Icon className="w-5 h-5" />

@@ -34,7 +34,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="como-funciona" className="py-24 lg:py-32 bg-[#050B18]">
+    <section id="como-funciona" className="py-24 lg:py-32 bg-section-a">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
@@ -61,7 +61,7 @@ export default function HowItWorks() {
           {STEPS.map((step, i) => (
             <div
               key={step.num}
-              className="group relative p-6 rounded-2xl border border-white/10 bg-[rgba(10,15,28,0.6)] backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#00BFFF]/50 hover:shadow-[0_10px_40px_rgba(0,191,255,0.15)] animate-fadeUp"
+              className="group relative p-6 rounded-2xl border border-white/10 bg-[rgba(0,28,70,0.9)] backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#00BFFF]/50 hover:shadow-[0_10px_40px_rgba(0,191,255,0.15)] animate-fadeUp"
               style={{ animationDelay: `${i * 0.15}s` }}
             >
               
@@ -95,7 +95,7 @@ export default function HowItWorks() {
 
         {/* PRAZO */}
         <div className="mt-12 flex justify-center">
-          <div className="flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-[rgba(10,15,28,0.6)] backdrop-blur-xl">
+          <div className="flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-[rgba(0,28,70,0.9)] backdrop-blur-xl">
             <Clock className="w-4 h-4 text-[#00BFFF]" />
             <span className="text-sm text-white">
               Seu site pronto em até <span className="text-[#00BFFF] font-semibold">15 dias</span>
